@@ -1,38 +1,97 @@
-.App {
-  text-align: center;
+.repos {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: calc(2vw + 2rem);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.repo-container {
+  width: 70vw;
+  display: flex;
+  margin: 1.3rem 0;
+  position: relative;
+  border-radius: 5px;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  border-left: 5px solid #5ba4a4;
+  box-shadow: 0 4px 6px 4px rgb(91 164 164 / 20%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.repo-container .logo {
+  display: flex;
+  align-items: center;
+  padding-right: 1.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.repo-container .logo img{
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+
+.repo-container .part1 {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.repo-container .part1 .description {
+  font-weight: 700;
+  color: #5ba4a4;
+  font-size: 0.7rem;
+  padding: 0.7rem 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.repo-container .part1 .cname {
+  cursor: pointer;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-right: 0.8rem;
+}
+
+.repo-container .part1 .featured,
+.repo-container .part1 .new {
+  color: #fff;
+  padding: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-right: 0.8rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  background-color: #5ba4a4;
+}
+
+.repo-container .part1 .featured {
+  background-color: #2c3a3a;
+}
+
+.repo-container .part1 .details {
+  color: #7b8e8e;
+  color: var(--dark-greyish);
+}
+
+.repo-container .part1 .cname:hover {
+  color: #5ba4a4;
+}
+
+.repo-container .part2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.repo-container .part2 span {
+  padding: 0.5rem;
+  cursor: pointer;
+  font-weight: 700;
+  color: #5ba4a4;
+  border-radius: 5px;
+  background-color: #effafa;
+}
+
+.repo-container .part2 span:hover {
+  color: #fff;
+  background-color: #5ba4a4;
 }
