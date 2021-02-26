@@ -14,7 +14,7 @@
   align-items: center;
   padding: 1.5rem 2rem;
   background-color: #fff;
-  border-left: 5px solid #5ba4a4;
+  border-left: 5px solid #ff5f5f;
   box-shadow: 0 4px 6px 4px rgb(91 164 164 / 20%);
 }
 
@@ -38,7 +38,7 @@
 
 .repo-container .part1 .description {
   font-weight: 700;
-  color: #5ba4a4;
+  color: #9b9b9b;
   font-size: 0.7rem;
   padding: 0.7rem 0;
 }
@@ -73,7 +73,7 @@
 }
 
 .repo-container .part1 .cname:hover {
-  color: #5ba4a4;
+  color: #ff5f5f;
 }
 
 .repo-container .part2 {

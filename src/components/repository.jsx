@@ -1,5 +1,4 @@
 const Repository = (props) => {
-  console.log(props.data);
   const {
     name,
     owner,
@@ -9,6 +8,13 @@ const Repository = (props) => {
     open_issues_count,
     created_at,
   } = props.data;
+
+  console.log(created_at); //shows: 2017-01-25T10:18:18Z
+
+  var date = Date.parse(created_at.toString());
+
+  console.log(date)
+
 
   return (
     <div className="repo-container">
