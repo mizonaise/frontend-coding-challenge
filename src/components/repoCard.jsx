@@ -1,6 +1,8 @@
 import Moment from "react-moment";
+import { changeFormat } from "../utils/changeFormat";
 
 const RepoCard = (props) => {
+  console.log(props.data);
   const {
     name,
     owner,
@@ -11,11 +13,11 @@ const RepoCard = (props) => {
     created_at,
   } = props.data;
 
-  function kFormatter(num) {
-    return Math.abs(num) > 999
-      ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
-      : Math.sign(num) * Math.abs(num);
-  }
+  // function kFormatter(num) {
+  //   return Math.abs(num) > 999
+  //     ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+  //     : Math.sign(num) * Math.abs(num);
+  // }
 
   return (
     <div className="repo-container">
@@ -27,19 +29,23 @@ const RepoCard = (props) => {
           <a href={html_url}>
             <span className="repo-name">{name}</span>
           </a>
-          {/* {props.data.new && <span className="new">new!</span>}
-            {props.data.featured && <span className="featured">featured</span>} */}
         </div>
 
         <div className="description">{description}</div>
 
         <div className="details">
-          <span className="star-issue">{"Stars: " + kFormatter(stargazers_count)}</span>
-          <span className="star-issue">{"Issues: " + kFormatter(open_issues_count)}</span>
+          <span className="star-issue">
+            {"Stars: " + changeFormat(stargazers_count)}
+          </span>
+          <span className="star-issue">
+            {"Issues: " + changeFormat(open_issues_count)}
+          </span>
           <span>{"Submitted "}</span>
           <Moment fromNow>{created_at}</Moment>
           <span>{" by "}</span>
-          <span className="owner-name">{owner.login}</span>
+          <a href={owner.html_url}>
+            <span className="owner-name">{owner.login}</span>
+          </a>
         </div>
       </div>
     </div>

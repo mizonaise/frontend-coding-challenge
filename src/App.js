@@ -4,21 +4,19 @@ import RepoCard from "./components/repoCard";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [repos, setRepos] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
 
   const fetchData = async (pageNumber) => {
     const priorDate = moment().add(-30, "d").format("YYYY-MM-DD");
-    // console.log(priorDate);
     const response = await fetch(
       `https://api.github.com/search/repositories?q=created:>${priorDate}&sort=stars&order=desc&page=${pageNumber}`
     );
-    // console.log(response);
     if (response.status === 200) {
       const fetchdata = await response.json();
-      setData((data) => [...data, ...fetchdata.items]);
+      setRepos((repos) => [...repos, ...fetchdata.items]);
       setIsLoading(false);
     } else {
       setHasMore(false);
@@ -48,18 +46,28 @@ function App() {
     <div>
       {isLoading ? (
         <div className="repos">
-          <div>isLoading </div>
+          <div className="load-container">
+            <div className="loader"> </div>
+          </div>
         </div>
       ) : (
         <div className="repos">
-          {data.map((d, index) => {
+          {repos.map((repo, index) => {
             return (
               <div ref={lastBookElementRef} key={index}>
-                <RepoCard data={d} />
+                <RepoCard data={repo} />
               </div>
             );
           })}
-          {hasMore ? <div>Load more ... </div> : null}
+          {hasMore ? (
+            <div className="spinner">
+              <div className="bounce1"></div>
+              <div className="bounce2"></div>
+              <div className="bounce3"></div>
+            </div>
+          ) : (
+            <div className="spinner"></div>
+          )}
         </div>
       )}
     </div>
