@@ -1,6 +1,6 @@
 import "./App.css";
 import moment from "moment";
-import Repository from "./components/repository";
+import RepoCard from "./components/repoCard";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
           {data.map((d, index) => {
             return (
               <div ref={lastBookElementRef} key={index}>
-                <Repository data={d} />
+                <RepoCard data={d} />
               </div>
             );
           })}
