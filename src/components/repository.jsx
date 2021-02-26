@@ -1,3 +1,5 @@
+import Moment from "react-moment";
+
 const Repository = (props) => {
   const {
     name,
@@ -9,12 +11,11 @@ const Repository = (props) => {
     created_at,
   } = props.data;
 
-  console.log(created_at); //shows: 2017-01-25T10:18:18Z
-
-  var date = Date.parse(created_at.toString());
-
-  console.log(date)
-
+  function kFormatter(num) {
+    return Math.abs(num) > 999
+      ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+      : Math.sign(num) * Math.abs(num);
+  }
 
   return (
     <div className="repo-container">
@@ -24,7 +25,7 @@ const Repository = (props) => {
       <div className="part1">
         <div className="">
           <a href={html_url}>
-            <span className="cname">{name}</span>
+            <span className="rname">{name}</span>
           </a>
           {/* {props.data.new && <span className="new">new!</span>}
             {props.data.featured && <span className="featured">featured</span>} */}
@@ -33,11 +34,15 @@ const Repository = (props) => {
         <div className="description">{description}</div>
 
         <div className="details">
-          <span>{"Stars: " + stargazers_count}</span>
+          <span>{"Stars: " + kFormatter(stargazers_count)}</span>
           <span>&nbsp;•&nbsp;</span>
-          <span>{"Issues: " + open_issues_count}</span>
+          <span>{"Issues: " + kFormatter(open_issues_count)}</span>
           <span>&nbsp;•&nbsp;</span>
-          <span>{"Submitted " + " by " + owner.login}</span>
+          <span>{"Submitted "}</span>
+          {/* <TimeAgo datetime={created_at} locale="en_EN" /> */}
+          <Moment fromNow>{created_at}</Moment>
+          <span>{" by "}</span>
+          <span className="uname">{owner.login}</span>
         </div>
       </div>
     </div>

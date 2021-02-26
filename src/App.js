@@ -1,4 +1,5 @@
 import "./App.css";
+import moment from "moment";
 import Repository from "./components/repository";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 
@@ -9,10 +10,12 @@ function App() {
   const [pageNumber, setPageNumber] = useState(1);
 
   const fetchData = async (pageNumber) => {
+    const priorDate = moment().add(-30, "d").format("YYYY-MM-DD");
+    // console.log(priorDate);
     const response = await fetch(
-      `https://api.github.com/search/repositories?q=created:>2017-10-22&sort=stars&order=desc&page=${pageNumber}`
+      `https://api.github.com/search/repositories?q=created:>${priorDate}&sort=stars&order=desc&page=${pageNumber}`
     );
-    console.log(response);
+    // console.log(response);
     if (response.status === 200) {
       const fetchdata = await response.json();
       setData((data) => [...data, ...fetchdata.items]);
@@ -26,23 +29,6 @@ function App() {
     fetchData(pageNumber);
   }, [pageNumber]);
 
-  // const pageEnd = useRef();
-
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     const observer = new IntersectionObserver(
-  //       (entries) => {
-  //         console.log(entries);
-  //         if (entries[0].isIntersecting) {
-  //           setPageNumber((prev) => prev + 1);
-  //         }
-  //       },
-  //       { threshold: 1 }
-  //     );
-  //     observer.observe(pageEnd.current);
-  //   }
-  // }, [isLoading]);
-
   const observer = useRef();
   const lastBookElementRef = useCallback(
     (node) => {
@@ -55,13 +41,15 @@ function App() {
       });
       if (node) observer.current.observe(node);
     },
-    [isLoading]
+    [isLoading, hasMore]
   );
 
   return (
     <div>
       {isLoading ? (
-        <div>isLoading</div>
+        <div className="repos">
+          <div>isLoading </div>
+        </div>
       ) : (
         <div className="repos">
           {data.map((d, index) => {
@@ -71,7 +59,7 @@ function App() {
               </div>
             );
           })}
-          {hasMore ? <div>Load more ... </div> : <div> the end </div>}
+          {hasMore ? <div>Load more ... </div> : null}
         </div>
       )}
     </div>

@@ -24,7 +24,7 @@
   padding-right: 1.5rem;
 }
 
-.repo-container .logo img{
+.repo-container .logo img {
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
@@ -37,16 +37,15 @@
 }
 
 .repo-container .part1 .description {
-  font-weight: 700;
   color: #9b9b9b;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   padding: 0.7rem 0;
 }
 
-.repo-container .part1 .cname {
+.repo-container .part1 .rname {
   cursor: pointer;
-  color: #000;
   font-weight: 700;
+  color: #524646;
   font-size: 1.1rem;
   margin-right: 0.8rem;
 }
@@ -68,12 +67,16 @@
 }
 
 .repo-container .part1 .details {
-  color: #7b8e8e;
-  color: var(--dark-greyish);
+  color: #1a1a1a;
+  font-size: 0.9rem;
 }
 
-.repo-container .part1 .cname:hover {
-  color: #ff5f5f;
+.repo-container .part1 .details .uname {
+  font-weight: 600;
+}
+
+.repo-container .part1 .rname:hover {
+  color: #ff2525;
 }
 
 .repo-container .part2 {
