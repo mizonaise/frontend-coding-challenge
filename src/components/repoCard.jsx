@@ -34,12 +34,9 @@ const RepoCard = (props) => {
         <div className="description">{description}</div>
 
         <div className="details">
-          <span>{"Stars: " + kFormatter(stargazers_count)}</span>
-          <span>&nbsp;•&nbsp;</span>
-          <span>{"Issues: " + kFormatter(open_issues_count)}</span>
-          <span>&nbsp;•&nbsp;</span>
+          <span className="star-issue">{"Stars: " + kFormatter(stargazers_count)}</span>
+          <span className="star-issue">{"Issues: " + kFormatter(open_issues_count)}</span>
           <span>{"Submitted "}</span>
-          {/* <TimeAgo datetime={created_at} locale="en_EN" /> */}
           <Moment fromNow>{created_at}</Moment>
           <span>{" by "}</span>
           <span className="owner-name">{owner.login}</span>
