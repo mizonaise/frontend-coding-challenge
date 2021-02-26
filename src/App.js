@@ -1,5 +1,5 @@
 import "./App.css";
-import moment from "moment";
+import dayjs from "dayjs";
 import RepoCard from "./components/repoCard";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 
@@ -10,7 +10,7 @@ function App() {
   const [pageNumber, setPageNumber] = useState(1);
 
   const fetchData = async (pageNumber) => {
-    const priorDate = moment().add(-30, "d").format("YYYY-MM-DD");
+    const priorDate = dayjs().subtract(40, "d").format("YYYY-MM-DD");
     const response = await fetch(
       `https://api.github.com/search/repositories?q=created:>${priorDate}&sort=stars&order=desc&page=${pageNumber}`
     );
@@ -45,10 +45,8 @@ function App() {
   return (
     <div>
       {isLoading ? (
-        <div className="repos">
-          <div className="load-container">
-            <div className="loader"> </div>
-          </div>
+        <div className="load-container">
+          <div className="loader"> </div>
         </div>
       ) : (
         <div className="repos">

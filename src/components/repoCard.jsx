@@ -1,8 +1,7 @@
-import Moment from "react-moment";
+import TimeAgo from 'timeago-react'; 
 import { changeFormat } from "../utils/changeFormat";
 
 const RepoCard = (props) => {
-  console.log(props.data);
   const {
     name,
     owner,
@@ -13,16 +12,10 @@ const RepoCard = (props) => {
     created_at,
   } = props.data;
 
-  // function kFormatter(num) {
-  //   return Math.abs(num) > 999
-  //     ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
-  //     : Math.sign(num) * Math.abs(num);
-  // }
-
   return (
     <div className="repo-container">
       <div className="avatar">
-        <img src={owner.avatar_url} alt="" />
+        <img src={owner.avatar_url} alt="Avatar" />
       </div>
       <div className="repo-content">
         <div className="">
@@ -41,7 +34,7 @@ const RepoCard = (props) => {
             {"Issues: " + changeFormat(open_issues_count)}
           </span>
           <span>{"Submitted "}</span>
-          <Moment fromNow>{created_at}</Moment>
+          <TimeAgo datetime={created_at} locale="en_EN" />
           <span>{" by "}</span>
           <a href={owner.html_url}>
             <span className="owner-name">{owner.login}</span>
